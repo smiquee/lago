@@ -83,6 +83,8 @@ func (m *Matrix) Mul(mul interface{}) *Matrix {
 	switch mul.(type) {
 	case float64:
 		return m.mul_scalar(mul.(float64))
+	case int:
+		return m.mul_scalar(float64(mul.(int)))
 	case *Matrix, Matrix:
 		r, c := mul.(*Matrix).Size()
 		if c == 1 && r == 1 {

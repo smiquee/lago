@@ -88,3 +88,83 @@ func TestId(t *testing.T) {
 		t.FailNow()
 	}
 }
+
+func TestTranspose(t *testing.T) {
+	m := lago.Ones(3, 2)
+	rows, cols := m.Size()
+	if rows != 3 || cols != 2 {
+		t.FailNow()
+	}
+
+	nm := m.Transpose()
+	rows, cols = nm.Size()
+	if rows != 2 || cols != 3 {
+		t.FailNow()
+	}
+}
+
+func TestMulScalar(t *testing.T) {
+	m := lago.Ones(2, 2)
+	nm := m.Mul(2)
+
+	rows, cols := nm.Size()
+	if rows != 2 || cols != 2 {
+		t.FailNow()
+	}
+
+	val := nm.Values()
+	if (*val)[0][0] != 2 {
+		t.FailNow()
+	}
+	if (*val)[0][1] != 2 {
+		t.FailNow()
+	}
+	if (*val)[1][0] != 2 {
+		t.FailNow()
+	}
+	if (*val)[1][1] != 2 {
+		t.FailNow()
+	}
+
+	nm = m.Mul(3.0)
+
+	rows, cols = nm.Size()
+	if rows != 2 || cols != 2 {
+		t.FailNow()
+	}
+
+	val = nm.Values()
+	if (*val)[0][0] != 3 {
+		t.FailNow()
+	}
+	if (*val)[0][1] != 3 {
+		t.FailNow()
+	}
+	if (*val)[1][0] != 3 {
+		t.FailNow()
+	}
+	if (*val)[1][1] != 3 {
+		t.FailNow()
+	}
+}
+
+func TestMulMatrix(t *testing.T) {
+	m := lago.Ones(2, 2)
+	n := lago.Ones(2, 1)
+	p := n.Mul(2)
+
+	nm := m.Mul(p)
+
+	rows, cols := nm.Size()
+	if rows != 2 || cols != 1 {
+		t.FailNow()
+	}
+
+	val := nm.Values()
+	if (*val)[0][0] != 4 {
+		t.FailNow()
+	}
+	if (*val)[1][0] != 4 {
+		t.FailNow()
+	}
+}
