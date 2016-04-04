@@ -168,3 +168,17 @@ func TestMulMatrix(t *testing.T) {
 		t.FailNow()
 	}
 }
+
+func ExamplePrint() {
+	m := lago.Ones(2, 2)
+	m.Print()
+
+	m = lago.Id(3)
+	nm := m.Mul(2)
+	nm.Print()
+	// Output: 1 1
+	// 1 1
+	// 2 0 0
+	// 0 2 0
+	// 0 0 2
+}
