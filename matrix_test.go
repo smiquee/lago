@@ -164,6 +164,32 @@ func TestMulMatrix(t *testing.T) {
 	}
 }
 
+func TestMulScalarMatrix(t *testing.T) {
+	m := lago.Ones(2, 2)
+	n := lago.Ones(1, 1)
+	p := n.Mul(2)
+
+	nm := m.Mul(p)
+
+	rows, cols := nm.Size()
+	if rows != 2 || cols != 2 {
+		t.FailNow()
+	}
+
+	if nm.Get(0, 0) != 2 {
+		t.FailNow()
+	}
+	if nm.Get(0, 1) != 2 {
+		t.FailNow()
+	}
+	if nm.Get(1, 0) != 2 {
+		t.FailNow()
+	}
+	if nm.Get(1, 1) != 2 {
+		t.FailNow()
+	}
+}
+
 func TestMulOther(t *testing.T) {
 	m := lago.Ones(2, 2)
 	p := m.Mul("a")
