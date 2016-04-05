@@ -164,6 +164,16 @@ func TestMulMatrix(t *testing.T) {
 	}
 }
 
+func TestMulOther(t *testing.T) {
+	m := lago.Ones(2, 2)
+	p := m.Mul("a")
+
+	rows, cols := p.Size()
+	if rows != 0 || cols != 0 {
+		t.FailNow()
+	}
+}
+
 func ExamplePrint() {
 	m := lago.Ones(2, 2)
 	m.Print()
