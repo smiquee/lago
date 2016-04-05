@@ -1,21 +1,34 @@
+// Package lago aims at being a very simple linear algebra library.
+// It is a playground for discivering golang and playing with linear
+// algebra with the idea to be used in a future machine learning playground
+// project.
 package lago
 
 import (
 	"fmt"
 )
 
+// The Matrix structure with the internal values (as a 2D array) and
+// the rows and cols numbers describing the Matrix dimensions.
+// The stored values are only of float64 type.
 type Matrix struct {
 	values [][]float64
 	rows   int
 	cols   int
 }
 
+// Method Size returns the rows and cols numbers of a given Matrix.
 func (m *Matrix) Size() (int, int) { return m.rows, m.cols }
 
+// Method Values returns the 2D array values of a given Matrix.
 func (m *Matrix) Values() *[][]float64 { return &m.values }
 
+// Method Get returns the value in x and y position in the given Matrix.
 func (m *Matrix) Get(x, y int) float64 { return m.values[x][y] }
 
+// Function Create returns a Matrix of size rows and cols, with an
+// init value. Also, the id parameter indicates whether to create
+// an identity matrix or not.
 func Create(rows, cols int, init float64, id bool) *Matrix {
 	if id {
 		if rows != cols {
@@ -41,18 +54,25 @@ func Create(rows, cols int, init float64, id bool) *Matrix {
 	return &m
 }
 
+// Function Zeros returns a Matrix of size rows and cols with
+// an init value of 0.
 func Zeros(rows, cols int) *Matrix {
 	return Create(rows, cols, 0, false)
 }
 
+// Function Zeros returns a Matrix of size rows and cols with
+// an init value of 1.
 func Ones(rows, cols int) *Matrix {
 	return Create(rows, cols, 1, false)
 }
 
+// Function that return an identity Matrix of size rows.
 func Id(rows int) *Matrix {
 	return Create(rows, rows, 1, true)
 }
 
+// Internal mul_scalar returns a new Matrix which is the result
+// of the multiplication of the given Matrix by the given scalar.
 func (m *Matrix) mul_scalar(scalar float64) *Matrix {
 	nm := Zeros(m.rows, m.cols)
 	for i := 0; i < m.rows; i++ {
@@ -64,6 +84,9 @@ func (m *Matrix) mul_scalar(scalar float64) *Matrix {
 	return nm
 }
 
+// Internal mul_matrix returns a new Matrix which is the result
+// of the multiplication of the given Matrix by another Matrix
+// given as parameter.
 func (m0 *Matrix) mul_matrix(m1 *Matrix) *Matrix {
 	if m0.cols != m1.rows {
 		panic("Dimensions mismatch!")
@@ -81,6 +104,9 @@ func (m0 *Matrix) mul_matrix(m1 *Matrix) *Matrix {
 	return nm
 }
 
+// Method Mul is a generic method that returns a new Matrix which is
+// the result of the multiplication of the given Matrix with an interface.
+// This interface can either be a scalar (float64 or int) or another Matrix.
 func (m *Matrix) Mul(mul interface{}) *Matrix {
 	switch mul.(type) {
 	case float64:
@@ -97,6 +123,8 @@ func (m *Matrix) Mul(mul interface{}) *Matrix {
 	return &Matrix{}
 }
 
+// Method Transpose returns a new Matrix which is the transposed version
+// of the given Matrix.
 func (m *Matrix) Transpose() *Matrix {
 	values := make([][]float64, m.cols)
 	for i := 0; i < m.cols; i++ {
@@ -111,6 +139,7 @@ func (m *Matrix) Transpose() *Matrix {
 	return &nm
 }
 
+// Method Print does a user friendly print of the given Matrix.
 func (m *Matrix) Print() {
 	i := 0
 	for ; i < m.rows; i++ {
