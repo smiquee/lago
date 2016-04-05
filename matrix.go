@@ -14,6 +14,8 @@ func (m *Matrix) Size() (int, int) { return m.rows, m.cols }
 
 func (m *Matrix) Values() *[][]float64 { return &m.values }
 
+func (m *Matrix) Get(x, y int) float64 { return m.values[x][y] }
+
 func Create(rows, cols int, init float64, id bool) *Matrix {
 	if id {
 		if rows != cols {

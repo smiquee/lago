@@ -34,23 +34,22 @@ func TestZeros(t *testing.T) {
 		t.FailNow()
 	}
 
-	val := m.Values()
-	if (*val)[0][0] != 0 {
+	if m.Get(0, 0) != 0 {
 		t.FailNow()
 	}
-	if (*val)[0][1] != 0 {
+	if m.Get(0, 1) != 0 {
 		t.FailNow()
 	}
-	if (*val)[0][2] != 0 {
+	if m.Get(0, 2) != 0 {
 		t.FailNow()
 	}
-	if (*val)[1][0] != 0 {
+	if m.Get(1, 0) != 0 {
 		t.FailNow()
 	}
-	if (*val)[1][1] != 0 {
+	if m.Get(1, 1) != 0 {
 		t.FailNow()
 	}
-	if (*val)[1][2] != 0 {
+	if m.Get(1, 2) != 0 {
 		t.FailNow()
 	}
 }
@@ -62,29 +61,28 @@ func TestId(t *testing.T) {
 		t.FailNow()
 	}
 
-	val := m.Values()
-	if (*val)[0][0] != 1 {
+	if m.Get(0, 0) != 1 {
 		t.FailNow()
 	}
-	if (*val)[0][1] != 0 {
+	if m.Get(0, 1) != 0 {
 		t.FailNow()
 	}
-	if (*val)[0][2] != 0 {
+	if m.Get(0, 2) != 0 {
 		t.FailNow()
 	}
-	if (*val)[0][3] != 0 {
+	if m.Get(0, 3) != 0 {
 		t.FailNow()
 	}
-	if (*val)[1][0] != 0 {
+	if m.Get(1, 0) != 0 {
 		t.FailNow()
 	}
-	if (*val)[1][1] != 1 {
+	if m.Get(1, 1) != 1 {
 		t.FailNow()
 	}
-	if (*val)[2][2] != 1 {
+	if m.Get(2, 2) != 1 {
 		t.FailNow()
 	}
-	if (*val)[3][3] != 1 {
+	if m.Get(3, 3) != 1 {
 		t.FailNow()
 	}
 }
@@ -112,17 +110,16 @@ func TestMulScalar(t *testing.T) {
 		t.FailNow()
 	}
 
-	val := nm.Values()
-	if (*val)[0][0] != 2 {
+	if nm.Get(0, 0) != 2 {
 		t.FailNow()
 	}
-	if (*val)[0][1] != 2 {
+	if nm.Get(0, 1) != 2 {
 		t.FailNow()
 	}
-	if (*val)[1][0] != 2 {
+	if nm.Get(1, 0) != 2 {
 		t.FailNow()
 	}
-	if (*val)[1][1] != 2 {
+	if nm.Get(1, 1) != 2 {
 		t.FailNow()
 	}
 
@@ -133,17 +130,16 @@ func TestMulScalar(t *testing.T) {
 		t.FailNow()
 	}
 
-	val = nm.Values()
-	if (*val)[0][0] != 3 {
+	if nm.Get(0, 0) != 3 {
 		t.FailNow()
 	}
-	if (*val)[0][1] != 3 {
+	if nm.Get(0, 1) != 3 {
 		t.FailNow()
 	}
-	if (*val)[1][0] != 3 {
+	if nm.Get(1, 0) != 3 {
 		t.FailNow()
 	}
-	if (*val)[1][1] != 3 {
+	if nm.Get(1, 1) != 3 {
 		t.FailNow()
 	}
 }
@@ -160,11 +156,10 @@ func TestMulMatrix(t *testing.T) {
 		t.FailNow()
 	}
 
-	val := nm.Values()
-	if (*val)[0][0] != 4 {
+	if nm.Get(0, 0) != 4 {
 		t.FailNow()
 	}
-	if (*val)[1][0] != 4 {
+	if nm.Get(1, 0) != 4 {
 		t.FailNow()
 	}
 }
